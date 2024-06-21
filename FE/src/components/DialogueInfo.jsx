@@ -17,7 +17,7 @@ const DialogueInfo = ({ id }) => {
   const [data, setData] = useState(null);
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/tasks/${id}`);
+      const response = await axios.get(`/tasks/${id}`);
       setData(response.data);
     } catch (error) {
       toast('Error fetching information');

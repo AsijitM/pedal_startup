@@ -58,7 +58,7 @@ export default function EditTaskDialog({ taskId, fetchData }) {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/tasks/${taskId}`
+          `/tasks/${taskId}`
         );
         const task = response.data;
 
@@ -81,7 +81,7 @@ export default function EditTaskDialog({ taskId, fetchData }) {
     try {
       const dataToSend = { ...data, dueDate: date };
       const response = await axios.put(
-        `http://localhost:3000/tasks/${taskId}`,
+        `/tasks/${taskId}`,
         dataToSend
       );
       console.log('Task updated successfully:', response.data);

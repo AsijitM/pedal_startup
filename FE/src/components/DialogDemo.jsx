@@ -59,7 +59,7 @@ export default function DialogDemo({ title, fetchData }) {
     try {
       const dataToSend = { ...data, dueDate: date };
       const response = await axios.post(
-        'http://localhost:3000/tasks',
+        '/tasks',
         dataToSend
       );
       console.log('Form submitted successfully:', response.data);
@@ -138,12 +138,8 @@ export default function DialogDemo({ title, fetchData }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
-            <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                Close
-              </Button>
-            </DialogClose>
+            <Button type="submit">Create Task</Button>
+  
           </DialogFooter>
         </form>
       </DialogContent>
