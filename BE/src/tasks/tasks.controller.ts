@@ -65,6 +65,8 @@ export class TasksController {
       await this.tasksService.delete(id);
       return { success: true, message: 'Successfully deleted' };
     } catch (error) {
+      console.log(error);
+
       if (error instanceof NotFoundException) throw error;
       throw new BadRequestException('Error deteting task');
     }

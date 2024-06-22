@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -22,7 +21,7 @@ import { toast } from 'sonner';
 import axios from 'axios';
 
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon, Loader2 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -40,12 +39,14 @@ const taskSchema = z.object({
     .max(50, 'Title cannot exceed 50 characters'),
   description: z
     .string()
+    .min(10, 'Description must be at least 10 characters')
     .max(255, 'Description cannot exceed 255 characters')
     .nonempty(),
 });
 
 export default function DialogDemo({ title, fetchData }) {
   const [date, setDate] = useState(null);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -56,12 +57,11 @@ export default function DialogDemo({ title, fetchData }) {
   });
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
+      if (!date) throw new Error('All fields are must');
       const dataToSend = { ...data, dueDate: date };
-      const response = await axios.post(
-        '/tasks',
-        dataToSend
-      );
+      const response = await axios.post('/tasks', dataToSend);
       console.log('Form submitted successfully:', response.data);
       toast('New Task Created');
       setDate(null);
@@ -69,7 +69,9 @@ export default function DialogDemo({ title, fetchData }) {
       fetchData();
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast(error.response?.data?.message || 'Error creating new Task');
+      toast(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -138,8 +140,14 @@ export default function DialogDemo({ title, fetchData }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Create Task</Button>
-  
+            {loading ? (
+              <Button disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button type="submit">Create Task</Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>

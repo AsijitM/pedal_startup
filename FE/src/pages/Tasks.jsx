@@ -9,15 +9,27 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Checkbox } from '@/components/ui/checkbox';
 import DialogDemo from '@/components/DialogDemo';
 import { toast } from 'sonner';
 import DialogueInfo from '@/components/DialogueInfo';
 import EditTaskDialog from '@/components/EditTaskdialogue';
 import { format } from 'date-fns';
-import { Skeleton } from '@/components/ui/skeleton';
-import { BadgeMinus } from 'lucide-react';
+
+import {  Trash2 } from 'lucide-react';
 import SkeletonTask from '@/components/SkeletonTask';
+// import { DeleteDialogue } from '@/components/DeleteDialogue';
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -81,7 +93,7 @@ const Tasks = () => {
       </div>
 
       <div className="flex items-center justify-center min-h-screen">
-        <div className="overflow-x-auto max-w-full">
+        <div className="overflow-x-auto w-3/4">
           {/* Task table */}
           {loading ? (
             <SkeletonTask />
@@ -95,7 +107,7 @@ const Tasks = () => {
                   <TableHead>Status</TableHead>
                   <TableHead>Title</TableHead>
                   <TableHead>Due Date</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead className="w-[100px] ">Actions</TableHead>
                 </TableRow>
               </TableHeader>
 
@@ -123,12 +135,31 @@ const Tasks = () => {
                     </TableCell>
                     <TableCell>
                       <div className="flex flex-row gap-3">
-                        {/* Assuming BadgeMinus icon for deleting */}
-                        <BadgeMinus
-                          onClick={() => handleDelete(task._id)}
-                          className="text-red-700"
-                          size={20}
-                        />
+                        <AlertDialog>
+                          <AlertDialogTrigger>
+                            <Trash2 className="text-red-700" size={20} />
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                Are you sure to delete this?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This action cannot be undone. This will
+                                permanently delete your account and remove your
+                                data from our servers.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => handleDelete(task._id)}
+                              >
+                                Delete
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                         <DialogueInfo id={task._id} />
                         {!task.completed && (
                           <EditTaskDialog
