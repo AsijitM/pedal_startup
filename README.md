@@ -40,6 +40,7 @@ This README.md provides a clear and organized guide for anyone cloning the repos
 
 # Edit , Delete and Preview
 ![image](https://github.com/AsijitM/pedal_startup/assets/74970659/94672a73-4b8c-4894-99a7-33804e174ca2)
+![image](https://github.com/AsijitM/pedal_startup/assets/74970659/4a53d111-fc01-485e-87f0-1fa1f547198a)
 ![image](https://github.com/AsijitM/pedal_startup/assets/74970659/1f82096e-25a1-4597-9067-ba13d4511261)
 
 
