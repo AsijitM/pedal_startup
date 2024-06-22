@@ -146,8 +146,7 @@ const Tasks = () => {
                               </AlertDialogTitle>
                               <AlertDialogDescription>
                                 This action cannot be undone. This will
-                                permanently delete your account and remove your
-                                data from our servers.
+                                permanently delete your task from our servers.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
