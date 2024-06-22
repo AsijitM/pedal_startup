@@ -31,3 +31,15 @@ For Backend I have used the following tech-stack:
 ---
 
 This README.md provides a clear and organized guide for anyone cloning the repository to set up and run both the frontend and backend components locally, as well as information about the deployed application. Adjust folder names (`frontend` and `backend`) and links as per your actual project structure and deployment locations.
+
+# Home page preview
+![image](https://github.com/AsijitM/pedal_startup/assets/74970659/1ef547ea-f073-45a1-a664-1da96878b645)
+
+# Create New Task
+![image](https://github.com/AsijitM/pedal_startup/assets/74970659/cb4b03c4-708f-4916-8442-3d252fb34dc0)
+
+# Edit , Delete and Preview
+![image](https://github.com/AsijitM/pedal_startup/assets/74970659/94672a73-4b8c-4894-99a7-33804e174ca2)
+![image](https://github.com/AsijitM/pedal_startup/assets/74970659/1f82096e-25a1-4597-9067-ba13d4511261)
+
+
